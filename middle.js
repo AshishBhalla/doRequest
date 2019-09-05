@@ -32,9 +32,18 @@ var getFilteredData = callback =>{
             var dataObj = JSON.parse(data);
 
             // To get data for id 6104546
+            // to find id using inbuilt filter
+            // var filterData = dataObj.filter(element => element.id === id)
 
-            var filterData = dataObj.filter(element => element.id === id)
-            callback(undefined,filterData);
+            //to find id using _.findWhere(array,property)
+            var filterData = _.findWhere(dataObj,{id:id})
+
+            if(filterData){
+                callback(undefined, filterData);
+            }
+            else{
+                callback(`ID ${id} not found!`)
+            }
         }
     })
 } 
